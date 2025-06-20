@@ -1,0 +1,16 @@
+node_modules/
+dist/
+.vite/
+
+# OS files
+.DS_Store
+
+# Log files
+*.log
+
+# Environment
+.env*
+
+# Editor
+.vscode/
+.idea/ 
