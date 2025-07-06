@@ -8,7 +8,7 @@ import VideoRenderingElement from '@/components/VideoRenderingElement';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import emailjs from '@emailjs/browser';
+import emailjs from '@emailjs/browser';                   
 import { toast } from 'sonner';
 import ThemeToggle from '@/components/ThemeToggle';
 
@@ -51,7 +51,7 @@ const Index = () => {
       title: "Corporate Vision Campaign",
       category: "corporate",
       client: "Fortune 500 Enterprise",
-      thumbnail: "https://storage.googleapis.com/shavez_portfolio/Market%20Share%20of%20Windows.mp4",
+      thumbnail: "https://storage.googleapis.com/shavez_portfolio/Deep_Ads%204_V2-video-export-2024-12-23T11-23-21.928Z.mp4",
       description: "Transforming corporate messaging into compelling visual narrative through advanced color grading and motion graphics."
     },
     {
@@ -59,7 +59,7 @@ const Index = () => {
       title: "Cinematic Brand Story",
       category: "commercial",
       client: "Global Fashion Brand",
-      thumbnail: "https://storage.googleapis.com/shavez_portfolio/what%20if%20you%20loose%20your%20job.mp4",
+      thumbnail: "https://storage.googleapis.com/shavez_portfolio/Deep_Ads%204_V2-video-export-2024-12-23T11-23-21.928Z.mp4",
       description: "Award-winning commercial featuring complex multi-camera editing and sophisticated color psychology."
     },
     {
@@ -67,7 +67,7 @@ const Index = () => {
       title: "Documentary Excellence",
       category: "documentary",
       client: "International Film Festival",
-      thumbnail: "https://storage.googleapis.com/shavez_portfolio/Deep_Ads%204_V2-video-export-2024-12-23T11-23-21.928Z.mp4",
+      thumbnail: "https://storage.googleapis.com/shavez_portfolio/full%20edit%20video.mp4",
       description: "Festival-selected documentary showcasing narrative mastery and emotional storytelling through precise editing."
     },
     {
@@ -83,7 +83,7 @@ const Index = () => {
       title: "Social Media Mastery",
       category: "social",
       client: "Viral Campaign Series",
-      thumbnail: "https://storage.googleapis.com/shavez_portfolio/full%20edit%20video.mp4",
+      thumbnail: "https://storage.googleapis.com/shavez_portfolio/quick%20coding%20tip.mp4",
       description: "Platform-optimized content achieving millions of views through strategic editing and pacing."
     },
     {
@@ -91,7 +91,23 @@ const Index = () => {
       title: "Branded Content Excellence",
       category: "branded",
       client: "Tech Innovation Leader",
-      thumbnail: "https://storage.googleapis.com/shavez_portfolio/quick%20coding%20tip.mp4",
+      thumbnail: "https://storage.googleapis.com/shavez_portfolio/what%20if%20you%20loose%20your%20job.mp4",
+      description: "Sophisticated branded content balancing entertainment value with strategic messaging."
+    },
+    {
+      id: 9,
+      title: "Social Media Mastery 3",
+      category: "social",
+      client: "Viral Campaign Series",
+      thumbnail: "https://storage.googleapis.com/shavez_portfolio/Market%20Share%20of%20Windows.mp4",
+      description: "Platform-optimized content achieving millions of views through strategic editing and pacing."
+    },
+    {
+      id: 12,
+      title: "Branded Content Excellence 3",
+      category: "branded",
+      client: "Tech Innovation Leader",
+      thumbnail: "https://storage.googleapis.com/shavez_portfolio/Market%20Share%20of%20Windows.mp4",
       description: "Sophisticated branded content balancing entertainment value with strategic messaging."
     }
   ];
@@ -149,21 +165,21 @@ const Index = () => {
 
   const experience = [
     {
-      year: "June 2024 - Present",
-      title: "Full-Time Video Editor",
-      company: "Code With Harry (Indian YouTuber)",
-      description: "Edited high-engagement videos for YouTube, utilizing advanced tools for storytelling and audience retention. Designed thumbnails and motion graphics to boost click-through rates. Collaborated with the content creation team to produce tutorials, live sessions, and explainer videos.",
-      achievements: "Advanced storytelling techniques • Innovative editing methods • Enhanced channel growth and engagement"
-    },
-    {
-      year: "January 2023 - June 2024",
+      year: "June 2022 - December 2022",
       title: "Graphics Designer & Website Manager",
       company: "Code With Harry (Indian YouTuber)",
       description: "Designed and printed high-quality graphics for merchandise and promotional materials. Managed website updates, ensuring seamless navigation and optimized user experience. Contributed to branding efforts through cohesive visual design and content packaging.",
       achievements: "High-quality merchandise design • Website optimization • Cohesive visual branding"
     },
     {
-      year: "June 2022 - December 2022",
+      year: "January 2023 - June 2024",
+      title: "Full-Time Video Editor",
+      company: "Code With Harry (Indian YouTuber)",
+      description: "Edited high-engagement videos for YouTube, utilizing advanced tools for storytelling and audience retention. Designed thumbnails and motion graphics to boost click-through rates. Collaborated with the content creation team to produce tutorials, live sessions, and explainer videos.",
+      achievements: "Advanced storytelling techniques • Innovative editing methods • Enhanced channel growth and engagement"
+    },
+    {
+      year: "June 2024 - Present",
       title: "Freelance Photo & Video Content Editor",
       company: "Traahi Studio (Professional Editing Studio)",
       description: "Partnered with top-rated Fiverr brands to deliver high-quality photo and video editing services. Specialized in cinematic video editing, color grading, and post-production for international clients. Maintained excellent client satisfaction by delivering projects before deadlines and exceeding expectations.",
@@ -171,8 +187,12 @@ const Index = () => {
     }
   ];
 
+  const uniquePortfolioItems = portfolioItems.filter(
+    (item, index, self) => index === self.findIndex((t) => t.thumbnail === item.thumbnail)
+  );
+
   const filteredPortfolio = activeFilter === 'all' 
-    ? portfolioItems 
+    ? uniquePortfolioItems
     : portfolioItems.filter(item => item.category === activeFilter);
 
   const navItems = [
@@ -254,10 +274,12 @@ const Index = () => {
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-portfolio-yellow transition-all duration-300 group-hover:w-full"></span>
                 </a>
               ))}
+              <ThemeToggle />
             </div>
 
             {/* Mobile Navigation Toggle */}
-            <div className="md:hidden">
+            <div className="md:hidden flex items-center gap-2">
+              <ThemeToggle />
               <Button
                 variant="ghost"
                 size="icon"
@@ -271,7 +293,7 @@ const Index = () => {
 
           {/* Mobile Menu */}
           {isMenuOpen && (
-            <div className="md:hidden bg-portfolio-black/95 backdrop-blur-md py-4 space-y-4 border-t border-portfolio-yellow/20 animate-fade-in">
+            <div className="md:hidden bg-portfolio-black/95 backdrop-blur-md py-4 space-y-4 border-t border-portfolio-yellow/20 animate-fade-in-down">
               {navItems.map((item) => (
                 <a
                   key={item.href}
@@ -293,7 +315,7 @@ const Index = () => {
         <div className="absolute inset-0">
           <img 
             src="/lovable-uploads/a3837f95-91ba-4c17-b046-3251fba9164f.png"
-            alt="Professional video editing workspace"
+            alt=""
             className="w-full h-full object-cover opacity-60"
           />
         </div>
@@ -318,19 +340,19 @@ const Index = () => {
           {/* Left Side - Text Content */}
           <div className="text-left">
             <div className="mb-8">
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold font-display mb-6 leading-tight">
+              <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold font-display mb-6 leading-tight">
                 <span className="block text-reveal animation-delay-0 text-portfolio-white">Transforming</span>
                 <span className="block text-reveal animation-delay-300 text-portfolio-yellow">Vision</span>
                 <span className="block text-reveal animation-delay-600 text-portfolio-white">Into Unforgettable</span>
                 <span className="block text-reveal animation-delay-900 text-portfolio-red">Video</span>
               </h1>
             </div>
-            <p className="text-xl md:text-2xl mb-12 text-portfolio-white/90 animate-fade-in-up animation-delay-1200 font-medium max-w-4xl leading-relaxed">
+            <p className="text-lg sm:text-xl md:text-2xl mb-12 text-portfolio-white/90 animate-fade-in-up animation-delay-1200 font-medium max-w-4xl leading-relaxed">
               Expert video editing for discerning brands and filmmakers seeking narrative power and global impact
             </p>
             <div className="flex flex-col sm:flex-row gap-6 animate-scale-in animation-delay-1500">
               <Button 
-                className="bg-portfolio-yellow text-portfolio-black hover:bg-portfolio-yellow/90 hover:scale-105 transition-all duration-300 font-bold px-10 py-4 rounded-lg shadow-2xl text-lg hover:shadow-portfolio-yellow/30 group"
+                className="bg-portfolio-yellow text-portfolio-black hover:bg-portfolio-yellow/90 hover:scale-105 transition-all duration-300 font-bold px-8 sm:px-10 py-3 sm:py-4 rounded-lg shadow-2xl text-base sm:text-lg hover:shadow-portfolio-yellow/30 group"
                 onClick={() => document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' })}
               >
                 <Play className="mr-3 h-6 w-6 group-hover:scale-110 transition-transform" />
@@ -339,7 +361,7 @@ const Index = () => {
               </Button>
               <Button 
                 variant="outline" 
-                className="border-2 border-portfolio-yellow text-portfolio-yellow hover:bg-portfolio-yellow hover:text-portfolio-black hover:scale-105 transition-all duration-300 font-bold px-10 py-4 rounded-lg text-lg hover:shadow-2xl hover:shadow-portfolio-yellow/30"
+                className="border-2 border-portfolio-yellow text-portfolio-yellow hover:bg-portfolio-yellow hover:text-portfolio-black hover:scale-105 transition-all duration-300 font-bold px-8 sm:px-10 py-3 sm:py-4 rounded-lg text-base sm:text-lg hover:shadow-2xl hover:shadow-portfolio-yellow/30"
                 onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
               >
                 Start Your Project
@@ -348,7 +370,7 @@ const Index = () => {
           </div>
 
           {/* Right Side - Video Rendering Element */}
-          <div className="animate-scale-in animation-delay-1200">
+          <div className="animate-scale-in animation-delay-1200 hidden lg:block">
             <VideoRenderingElement />
           </div>
         </div>
@@ -356,35 +378,35 @@ const Index = () => {
 
       {/* About Section */}
       <section id="about" className="section-padding bg-portfolio-white text-portfolio-black">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="animate-fade-in">
-              <h2 className="text-4xl md:text-6xl font-bold font-display mb-8">
+              <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold font-display mb-8">
                 Crafting Stories That <span className="text-portfolio-yellow">Captivate</span> & <span className="text-portfolio-red">Convert</span>
               </h2>
-              <p className="text-lg mb-6 text-gray-700 leading-relaxed">
+              <p className="text-base sm:text-lg mb-6 text-gray-700 leading-relaxed">
                 Experienced Photo & Video Editor and Web Manager with expertise in crafting high-quality visual content. Skilled in collaborating with YouTubers, Indian and international creators, and top-rated Fiverr professionals.
               </p>
-              <p className="text-lg mb-8 text-gray-700 leading-relaxed">
+              <p className="text-base sm:text-lg mb-8 text-gray-700 leading-relaxed">
                 Master editor delivering creative, impactful results that elevate brand presence and storytelling across platforms with precision and flair. From YouTube content creation to international client projects, I deliver content that captivates audiences and drives engagement.
               </p>
-              <div className="grid grid-cols-3 gap-8 mb-8">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 mb-8">
                 <div className="text-center group hover:scale-110 transition-transform duration-300">
-                  <div className="text-4xl font-bold text-portfolio-yellow mb-2">500+</div>
+                  <div className="text-3xl sm:text-4xl font-bold text-portfolio-yellow mb-2">500+</div>
                   <div className="text-sm text-gray-600 font-medium">Projects Completed</div>
                 </div>
                 <div className="text-center group hover:scale-110 transition-transform duration-300">
-                  <div className="text-4xl font-bold text-portfolio-red mb-2">200M+</div>
+                  <div className="text-3xl sm:text-4xl font-bold text-portfolio-red mb-2">200M+</div>
                   <div className="text-sm text-gray-600 font-medium">Total Views Generated</div>
                 </div>
                 <div className="text-center group hover:scale-110 transition-transform duration-300">
-                  <div className="text-4xl font-bold text-portfolio-yellow mb-2">25+</div>
+                  <div className="text-3xl sm:text-4xl font-bold text-portfolio-yellow mb-2">25+</div>
                   <div className="text-sm text-gray-600 font-medium">Awards & Recognition</div>
                 </div>
               </div>
-              <div className="flex gap-4">
+              <div className="flex flex-col sm:flex-row gap-4">
                 <Button 
-                  className="bg-portfolio-yellow text-portfolio-black hover:bg-portfolio-yellow/90 font-semibold px-6 py-3"
+                  className="bg-portfolio-yellow text-portfolio-black hover:bg-portfolio-yellow/90 font-semibold px-6 py-3 w-full sm:w-auto"
                   onClick={handleDownloadCV}
                 >
                   <Download className="mr-2 h-5 w-5" />
@@ -392,7 +414,7 @@ const Index = () => {
                 </Button>
                 <Button 
                   variant="outline" 
-                  className="border-portfolio-black text-portfolio-black hover:bg-portfolio-black hover:text-white font-semibold px-6 py-3"
+                  className="border-portfolio-black text-portfolio-black hover:bg-portfolio-black hover:text-white font-semibold px-6 py-3 w-full sm:w-auto"
                   onClick={() => window.open('https://www.linkedin.com/in/mohd-shavez-883a4a347?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app', '_blank')}
                 >
                   View LinkedIn
@@ -401,11 +423,11 @@ const Index = () => {
             </div>
             <div className="animate-scale-in">
               <div className="relative group">
-                <div className="absolute -inset-8 bg-gradient-to-r from-portfolio-yellow via-portfolio-red to-portfolio-yellow rounded-2xl blur-2xl opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
+                <div className="absolute -inset-4 sm:-inset-8 bg-gradient-to-r from-portfolio-yellow via-portfolio-red to-portfolio-yellow rounded-2xl blur-2xl opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
                 <img 
                   src="/image.png"
                   alt="Mohd Shavez - Professional Video Editor"
-                  className="relative w-full h-[600px] object-cover rounded-2xl shadow-2xl group-hover:scale-105 transition-transform duration-500"
+                  className="relative w-full h-auto max-h-[500px] lg:max-h-[600px] object-cover rounded-2xl shadow-2xl group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
             </div>
@@ -415,29 +437,29 @@ const Index = () => {
 
       {/* Portfolio Section */}
       <section id="work" className="section-padding bg-gray-50">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-6xl font-bold font-display mb-8 text-portfolio-black">
+            <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold font-display mb-8 text-portfolio-black">
               Featured <span className="text-portfolio-yellow">Portfolio</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-base sm:text-xl text-gray-600 max-w-3xl mx-auto">
               Discover award-winning projects that showcase technical excellence and creative storytelling
             </p>
           </div>
 
           {/* Interactive Category Explorer */}
-          <div className="mb-20">
+          <div className="mb-12 sm:mb-20">
             <div className="text-center mb-12">
-              <div className="inline-flex items-center gap-3 bg-portfolio-yellow/10 backdrop-blur-sm border border-portfolio-yellow/20 rounded-full px-6 py-3 mb-6">
+              <div className="inline-flex items-center gap-3 bg-portfolio-yellow/10 backdrop-blur-sm border border-portfolio-yellow/20 rounded-full px-4 sm:px-6 py-3 mb-6">
                 <Eye className="h-5 w-5 text-portfolio-yellow" />
-                <span className="text-portfolio-yellow font-semibold">Explore by Category</span>
+                <span className="text-portfolio-yellow font-semibold text-sm sm:text-base">Explore by Category</span>
               </div>
               <h3 className="text-2xl md:text-3xl font-bold text-portfolio-black mb-4">
                 Discover <span className="text-portfolio-yellow">Masterpieces</span> by Genre
               </h3>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7 gap-4">
+            <div className="flex overflow-x-auto pb-4 -mx-4 px-4 sm:grid sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7 sm:gap-4 scrollbar-hide">
               {[
                 { 
                   key: 'all', 
@@ -502,7 +524,7 @@ const Index = () => {
                   count: portfolioItems.filter(item => item.category === 'branded').length,
                   description: 'Brand Identity'
                 }
-              ].map((category) => {
+              ].map((category, index) => {
                 const IconComponent = category.icon;
                 const isActive = activeFilter === category.key;
                 
@@ -510,12 +532,12 @@ const Index = () => {
                   <div
                     key={category.key}
                     onClick={() => setActiveFilter(category.key)}
-                    className={`group relative cursor-pointer transition-all duration-500 hover:-translate-y-3 ${
+                    className={`group relative cursor-pointer transition-all duration-500 hover:-translate-y-2 sm:hover:-translate-y-3 flex-shrink-0 w-4/5 sm:w-auto ${
                       isActive ? 'scale-105 z-10' : 'hover:scale-105'
-                    }`}
+                    } ${index > 0 ? 'ml-4 sm:ml-0' : ''}`}
                   >
                     <div className={`
-                      relative overflow-hidden rounded-2xl border-2 transition-all duration-500 backdrop-blur-sm
+                      relative overflow-hidden rounded-2xl border-2 transition-all duration-500 backdrop-blur-sm h-full
                       ${isActive 
                         ? 'border-portfolio-yellow shadow-2xl shadow-portfolio-yellow/30 bg-portfolio-yellow/20' 
                         : `border-gray-200 hover:border-portfolio-yellow group-hover:shadow-xl ${category.bgColor}`
@@ -526,30 +548,30 @@ const Index = () => {
                         <div className={`absolute -bottom-6 -left-6 w-16 h-16 bg-gradient-to-br ${category.color} rounded-full filter blur-lg`}></div>
                       </div>
 
-                      <div className="relative p-6 text-center">
+                      <div className="relative p-4 sm:p-6 text-center flex flex-col justify-center h-full">
                         <div className={`
-                          inline-flex items-center justify-center w-16 h-16 rounded-xl mb-4 transition-all duration-300
+                          inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 rounded-xl mb-4 transition-all duration-300 mx-auto
                           ${isActive 
                             ? 'bg-portfolio-yellow text-portfolio-black scale-110' 
                             : `bg-gradient-to-br ${category.color} text-white group-hover:scale-110`
                           }
                         `}>
-                          <IconComponent className="h-8 w-8" />
+                          <IconComponent className="h-6 w-6 sm:h-8 sm:w-8" />
                         </div>
 
                         <h4 className={`
-                          font-bold text-lg mb-2 transition-colors duration-300
+                          font-bold text-base sm:text-lg mb-2 transition-colors duration-300
                           ${isActive ? 'text-portfolio-yellow' : 'text-gray-800 group-hover:text-portfolio-yellow'}
                         `}>
                           {category.name}
                         </h4>
 
-                        <p className="text-sm text-gray-600 group-hover:text-gray-700 mb-3 leading-relaxed transition-colors duration-300">
+                        <p className="text-xs sm:text-sm text-gray-600 group-hover:text-gray-700 mb-3 leading-relaxed transition-colors duration-300">
                           {category.description}
                         </p>
 
                         <div className={`
-                          inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold transition-all duration-300
+                          inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold transition-all duration-300 mx-auto
                           ${isActive 
                             ? 'bg-portfolio-yellow/20 text-portfolio-yellow border border-portfolio-yellow/30' 
                             : 'bg-gray-100 text-gray-600 group-hover:bg-portfolio-yellow/10 group-hover:text-portfolio-yellow'
@@ -578,9 +600,9 @@ const Index = () => {
             </div>
 
             <div className="mt-8 text-center">
-              <div className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-sm border border-gray-200 rounded-full px-6 py-3 shadow-lg">
+              <div className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-sm border border-gray-200 rounded-full px-4 sm:px-6 py-3 shadow-lg">
                 <div className="w-3 h-3 bg-portfolio-yellow rounded-full animate-pulse"></div>
-                <span className="text-gray-700 font-medium">
+                <span className="text-gray-700 font-medium text-sm sm:text-base">
                   Showing {filteredPortfolio.length} {activeFilter === 'all' ? 'projects' : `${activeFilter} projects`}
                 </span>
               </div>
@@ -592,15 +614,15 @@ const Index = () => {
             {filteredPortfolio.map((item) => (
               <Card 
                 key={item.id}
-                className="overflow-hidden bg-white border-2 border-gray-200 rounded-2xl transition-all duration-500 group hover:-translate-y-2 hover:shadow-2xl hover:shadow-yellow-500/20 hover:border-portfolio-yellow"
+                className="overflow-hidden bg-white border-2 border-gray-200 rounded-2xl transition-all duration-300 group hover:-translate-y-2 hover:shadow-2xl hover:shadow-yellow-500/20 hover:border-portfolio-yellow"
                 onMouseEnter={(e) => handleVideoHover(e, true, item.id)}
                 onMouseLeave={(e) => handleVideoHover(e, false, null)}
               >
-                <div className="relative aspect-[9/16] w-full bg-black">
+                <div className="relative aspect-[9/16] w-full bg-black overflow-hidden">
                   <video
                     src={item.thumbnail}
                     title={item.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                     autoPlay
                     loop
                     muted
@@ -614,10 +636,10 @@ const Index = () => {
                     </div>
                   )}
                 </div>
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-bold mb-3 text-portfolio-black group-hover:text-portfolio-yellow transition-colors">{item.title}</h3>
+                <CardContent className="p-4 sm:p-6">
+                  <h3 className="text-lg sm:text-xl font-bold mb-3 text-portfolio-black group-hover:text-portfolio-yellow transition-colors">{item.title}</h3>
                   <p className="text-gray-600 mb-4 leading-relaxed text-sm">{item.description}</p>
-                  <div className="text-portfolio-red font-semibold">{item.client}</div>
+                  <div className="text-portfolio-red font-semibold text-sm sm:text-base">{item.client}</div>
                 </CardContent>
               </Card>
             ))}
@@ -632,37 +654,37 @@ const Index = () => {
           <div className="absolute bottom-0 right-0 w-96 h-96 bg-portfolio-red rounded-full filter blur-3xl"></div>
         </div>
         
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center mb-20">
-            <div className="inline-flex items-center gap-3 bg-portfolio-yellow/10 backdrop-blur-sm border border-portfolio-yellow/20 rounded-full px-6 py-3 mb-8">
+        <div className="max-w-7xl mx-auto relative z-10 px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16 sm:mb-20">
+            <div className="inline-flex items-center gap-3 bg-portfolio-yellow/10 backdrop-blur-sm border border-portfolio-yellow/20 rounded-full px-4 sm:px-6 py-3 mb-8">
               <Globe className="h-5 w-5 text-portfolio-yellow" />
-              <span className="text-portfolio-yellow font-semibold">Global Excellence Standards</span>
+              <span className="text-portfolio-yellow font-semibold text-sm sm:text-base">Global Excellence Standards</span>
             </div>
-            <h2 className="text-5xl md:text-7xl font-bold font-display mb-8 leading-tight">
+            <h2 className="text-4xl sm:text-5xl md:text-7xl font-bold font-display mb-8 leading-tight">
               <span className="text-white">World-Class</span><br />
               <span className="text-portfolio-yellow">Creative Services</span>
             </h2>
-            <p className="text-xl text-portfolio-white/70 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-xl text-portfolio-white/70 max-w-4xl mx-auto leading-relaxed">
               Award-winning post-production solutions trusted by international brands, 
               filmmakers, and content creators worldwide
             </p>
-            <div className="flex flex-wrap justify-center gap-6 mt-8">
-              <div className="flex items-center gap-2 text-portfolio-white/60">
+            <div className="flex flex-wrap justify-center gap-4 sm:gap-6 mt-8">
+              <div className="flex items-center gap-2 text-portfolio-white/60 text-sm sm:text-base">
                 <Award className="h-5 w-5 text-portfolio-yellow" />
                 <span>Industry Certified</span>
               </div>
-              <div className="flex items-center gap-2 text-portfolio-white/60">
+              <div className="flex items-center gap-2 text-portfolio-white/60 text-sm sm:text-base">
                 <Globe className="h-5 w-5 text-portfolio-yellow" />
                 <span>Global Clientele</span>
               </div>
-              <div className="flex items-center gap-2 text-portfolio-white/60">
+              <div className="flex items-center gap-2 text-portfolio-white/60 text-sm sm:text-base">
                 <Clock className="h-5 w-5 text-portfolio-yellow" />
                 <span>24/7 Support</span>
               </div>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 mb-16">
             {services.map((service, index) => {
               const IconComponent = service.icon;
               const tierColors = {
@@ -678,10 +700,10 @@ const Index = () => {
                 >
                   <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   
-                  <CardContent className="p-8 relative z-10">
+                  <CardContent className="p-6 sm:p-8 relative z-10">
                     <div className="flex items-start justify-between mb-6">
-                      <div className="p-4 bg-portfolio-white/10 rounded-2xl group-hover:bg-portfolio-yellow/20 transition-colors duration-300">
-                        <IconComponent className="h-8 w-8 text-portfolio-yellow group-hover:text-white transition-colors duration-300" />
+                      <div className="p-3 sm:p-4 bg-portfolio-white/10 rounded-2xl group-hover:bg-portfolio-yellow/20 transition-colors duration-300">
+                        <IconComponent className="h-7 w-7 sm:h-8 sm:w-8 text-portfolio-yellow group-hover:text-white transition-colors duration-300" />
                       </div>
                       <div className="text-right">
                         <div className="text-xs font-bold text-portfolio-yellow bg-portfolio-yellow/10 px-3 py-1 rounded-full border border-portfolio-yellow/20">
@@ -690,7 +712,7 @@ const Index = () => {
                       </div>
                     </div>
 
-                    <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-portfolio-yellow transition-colors duration-300">
+                    <h3 className="text-xl sm:text-2xl font-bold mb-4 text-white group-hover:text-portfolio-yellow transition-colors duration-300">
                       {service.title}
                     </h3>
                     
@@ -726,17 +748,17 @@ const Index = () => {
             })}
           </div>
 
-          <div className="bg-gradient-to-r from-portfolio-yellow/10 via-portfolio-red/10 to-portfolio-yellow/10 rounded-3xl p-8 md:p-12 border border-portfolio-yellow/20 backdrop-blur-sm">
+          <div className="bg-gradient-to-r from-portfolio-yellow/10 via-portfolio-red/10 to-portfolio-yellow/10 rounded-3xl p-6 sm:p-8 md:p-12 border border-portfolio-yellow/20 backdrop-blur-sm">
             <div className="text-center">
-              <h3 className="text-3xl md:text-4xl font-bold mb-6 text-white">
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 text-white">
                 Ready to Elevate Your Content?
               </h3>
-              <p className="text-portfolio-white/70 mb-8 max-w-2xl mx-auto text-lg">
+              <p className="text-portfolio-white/70 mb-8 max-w-2xl mx-auto text-base sm:text-lg">
                 Join 500+ satisfied clients worldwide who trust our expertise for their most important projects
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button 
-                  className="bg-portfolio-yellow text-portfolio-black hover:bg-portfolio-yellow/90 font-bold px-8 py-3 rounded-lg text-lg hover:scale-105 transition-all duration-300"
+                  className="bg-portfolio-yellow text-portfolio-black hover:bg-portfolio-yellow/90 font-bold px-6 sm:px-8 py-3 rounded-lg text-base sm:text-lg hover:scale-105 transition-all duration-300"
                   onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
                 >
                   Start Your Project
@@ -744,7 +766,7 @@ const Index = () => {
                 </Button>
                 <Button 
                   variant="outline" 
-                  className="border-2 border-portfolio-yellow text-portfolio-yellow hover:bg-portfolio-yellow hover:text-portfolio-black font-bold px-8 py-3 rounded-lg text-lg hover:scale-105 transition-all duration-300"
+                  className="border-2 border-portfolio-yellow text-portfolio-yellow hover:bg-portfolio-yellow hover:text-portfolio-black font-bold px-6 sm:px-8 py-3 rounded-lg text-base sm:text-lg hover:scale-105 transition-all duration-300"
                   onClick={() => document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' })}
                 >
                   View Portfolio
@@ -757,26 +779,26 @@ const Index = () => {
 
       {/* Experience Section */}
       <section id="experience" className="section-padding bg-portfolio-white">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-6xl font-bold font-display mb-8 text-portfolio-black">
+            <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold font-display mb-8 text-portfolio-black">
               Professional <span className="text-portfolio-red">Journey</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-base sm:text-xl text-gray-600 max-w-3xl mx-auto">
               Building expertise through collaboration with industry leaders
             </p>
           </div>
           <div className="space-y-8">
             {experience.map((exp, index) => (
-              <div key={index} className="flex flex-col lg:flex-row gap-8 p-8 rounded-2xl bg-white border-2 border-gray-200 hover:border-portfolio-yellow hover-lift shadow-xl group transition-all duration-500">
+              <div key={index} className="flex flex-col lg:flex-row gap-6 sm:gap-8 p-6 sm:p-8 rounded-2xl bg-white border-2 border-gray-200 hover:border-portfolio-yellow hover-lift shadow-xl group transition-all duration-500">
                 <div className="lg:w-1/4">
-                  <div className="text-portfolio-yellow font-bold text-xl mb-2">{exp.year}</div>
-                  <div className="text-portfolio-green font-semibold text-sm">{exp.achievements}</div>
+                  <div className="text-portfolio-yellow font-bold text-base sm:text-xl mb-2">{exp.year}</div>
+                  <div className="text-portfolio-green font-semibold text-xs sm:text-sm">{exp.achievements}</div>
                 </div>
                 <div className="lg:w-3/4">
-                  <h3 className="text-2xl font-bold mb-3 text-portfolio-black group-hover:text-portfolio-yellow transition-colors">{exp.title}</h3>
-                  <div className="text-portfolio-red font-bold mb-4 text-lg">{exp.company}</div>
-                  <p className="text-gray-600 leading-relaxed">{exp.description}</p>
+                  <h3 className="text-xl sm:text-2xl font-bold mb-3 text-portfolio-black group-hover:text-portfolio-yellow transition-colors">{exp.title}</h3>
+                  <div className="text-portfolio-red font-bold mb-4 text-base sm:text-lg">{exp.company}</div>
+                  <p className="text-gray-600 leading-relaxed text-sm sm:text-base">{exp.description}</p>
                 </div>
               </div>
             ))}
@@ -786,29 +808,29 @@ const Index = () => {
 
       {/* Contact Section */}
       <section id="contact" className="section-padding bg-gradient-to-br from-portfolio-black via-portfolio-black to-portfolio-red/20 text-portfolio-white">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-6xl font-bold font-display mb-8">
+            <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold font-display mb-8">
               Let's Create Something <span className="text-portfolio-yellow">Exceptional</span>
             </h2>
-            <p className="text-xl text-portfolio-white/80 max-w-3xl mx-auto">
+            <p className="text-base sm:text-xl text-portfolio-white/80 max-w-3xl mx-auto">
               Ready to elevate your next project? Let's discuss how we can bring your vision to life.
             </p>
           </div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-16">
             <div className="animate-fade-in">
-              <h3 className="text-2xl font-bold mb-8 text-portfolio-yellow">Get In Touch</h3>
+              <h3 className="text-xl sm:text-2xl font-bold mb-8 text-portfolio-yellow">Get In Touch</h3>
               <div className="space-y-6">
-                <div className="flex items-center gap-4 text-lg">
+                <div className="flex items-center gap-4 text-base sm:text-lg">
                   <Mail className="h-6 w-6 text-portfolio-yellow" />
-                  <span className="text-portfolio-white">mohammadshavez2249@gmail.com</span>
+                  <span className="text-portfolio-white break-all">mohammadshavez2249@gmail.com</span>
                 </div>
-                <div className="flex items-center gap-4 text-lg">
+                <div className="flex items-center gap-4 text-base sm:text-lg">
                   <Phone className="h-6 w-6 text-portfolio-yellow" />
                   <span className="text-portfolio-white">+91 97580 62034</span>
                 </div>
                 <div className="pt-4">
-                  <h4 className="text-lg font-semibold mb-4 text-portfolio-yellow">Connect on Social</h4>
+                  <h4 className="text-base sm:text-lg font-semibold mb-4 text-portfolio-yellow">Connect on Social</h4>
                   <div className="flex gap-4">
                     <a href="https://www.instagram.com/shav_edit?igsh=MXR2aTh0c2hzODZoNA==" target="_blank" rel="noopener noreferrer" className="p-3 bg-portfolio-yellow/20 rounded-lg hover:bg-portfolio-yellow hover:text-portfolio-black transition-colors">
                       <Instagram className="h-5 w-5" />
@@ -829,7 +851,7 @@ const Index = () => {
                   <div>
                     <Input 
                       placeholder="Your Name" 
-                      className="bg-portfolio-white/10 border-portfolio-white/30 text-portfolio-white placeholder:text-portfolio-white/60 py-3 focus:border-portfolio-yellow"
+                      className="bg-portfolio-white/10 border-portfolio-white/30 text-portfolio-white placeholder:text-portfolio-white/60 py-3 focus:border-portfolio-yellow h-12 text-base"
                       {...register("name")}
                     />
                     {errors.name && <p className="text-portfolio-red text-sm mt-2">{errors.name.message}</p>}
@@ -838,7 +860,7 @@ const Index = () => {
                     <Input 
                       type="email" 
                       placeholder="Your Email"
-                      className="bg-portfolio-white/10 border-portfolio-white/30 text-portfolio-white placeholder:text-portfolio-white/60 py-3 focus:border-portfolio-yellow"
+                      className="bg-portfolio-white/10 border-portfolio-white/30 text-portfolio-white placeholder:text-portfolio-white/60 py-3 focus:border-portfolio-yellow h-12 text-base"
                       {...register("email")}
                     />
                     {errors.email && <p className="text-portfolio-red text-sm mt-2">{errors.email.message}</p>}
@@ -847,7 +869,7 @@ const Index = () => {
                 <div>
                   <Textarea 
                     placeholder="Your Message" 
-                    className="bg-portfolio-white/10 border-portfolio-white/30 text-portfolio-white placeholder:text-portfolio-white/60 py-3 focus:border-portfolio-yellow"
+                    className="bg-portfolio-white/10 border-portfolio-white/30 text-portfolio-white placeholder:text-portfolio-white/60 py-3 focus:border-portfolio-yellow text-base"
                     rows={5}
                     {...register("message")}
                   />
@@ -856,7 +878,7 @@ const Index = () => {
                 <Button 
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-portfolio-yellow text-portfolio-black hover:bg-portfolio-yellow/90 font-bold py-4 rounded-lg text-lg transition-all duration-300 disabled:bg-gray-500 disabled:cursor-not-allowed"
+                  className="w-full bg-portfolio-yellow text-portfolio-black hover:bg-portfolio-yellow/90 font-bold py-3 sm:py-4 rounded-lg text-base sm:text-lg transition-all duration-300 disabled:bg-gray-500 disabled:cursor-not-allowed"
                 >
                   {isSubmitting ? 'Sending...' : 'Send Message'}
                 </Button>
@@ -874,7 +896,7 @@ const Index = () => {
               <span className="text-portfolio-yellow">Shavez</span>
               <span className="text-portfolio-white ml-2">Edit</span>
             </div>
-            <p className="text-portfolio-white/60">© 2024 Mohd Shavez. Transforming vision into unforgettable video.</p>
+            <p className="text-portfolio-white/60 text-sm sm:text-base">© 2024 Mohd Shavez. Transforming vision into unforgettable video.</p>
           </div>
         </div>
       </footer>
