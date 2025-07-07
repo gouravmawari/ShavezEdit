@@ -10,7 +10,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import emailjs from '@emailjs/browser';                   
 import { toast } from 'sonner';
-import ThemeToggle from '@/components/ThemeToggle';
 
 const contactFormSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
@@ -122,26 +121,26 @@ const Index = () => {
       complexity: "Advanced"
     },
     {
-      title: "Creative & Narrative Editing",
-      description: "Storytelling expertise that transforms footage into compelling narratives, focusing on pacing, emotion, and audience engagement.",
-      icon: Edit,
-      features: ["Story Arc Development", "Emotional Pacing", "Narrative Flow", "Audience Engagement"],
+      title: "Digital Advertising Solutions",
+      description: "We can create and run ads for your business. Ads can significantly improve your brand visibility, lead generation, and sales conversion.",
+      icon: Target,
+      features: ["Target the right audience with precision", "Increase website traffic and brand awareness", "Track performance and optimize results", "Boost sales and business growth"],
       tier: "professional",
       complexity: "Expert"
     },
     {
-      title: "Color Correction & Grading",
-      description: "Advanced color work using DaVinci Resolve to enhance mood, establish visual consistency, and create cinematic aesthetics.",
-      icon: Palette,
-      features: ["Color Matching", "Mood Enhancement", "Visual Consistency", "Cinematic Look"],
+      title: "Full-Stack Web Development",
+      description: "We build full-stack websites using any modern tech stack, optimized for speed, performance, and beautiful UI/UX design.",
+      icon: Globe,
+      features: ["Modern Tech Stack Implementation", "Speed & Performance Optimization", "Beautiful UI/UX Design", "Responsive Cross-Platform Design"],
       tier: "premium",
       complexity: "Advanced"
     },
     {
-      title: "Motion Graphics & Animation",
-      description: "Dynamic graphics and animation using After Effects to elevate your content with professional visual elements.",
-      icon: Zap,
-      features: ["2D/3D Animation", "Logo Animation", "Text Effects", "Visual Elements"],
+      title: "Digital Growth Strategy",
+      description: "We help grow your business through digital strategies tailored to your needs.",
+      icon: TrendingUp,
+      features: ["Improve brand reach across platforms", "Build customer trust and engagement", "Drive more conversions with optimized strategies", "Data-driven growth optimization"],
       tier: "professional",
       complexity: "Expert"
     },
@@ -252,34 +251,32 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-portfolio-black text-portfolio-white overflow-x-hidden">
       {/* Enhanced Navigation */}
-      <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${
+      <nav className={`fixed top-0 w-full z-50 transition-all duration-500 navbar-fixed ${
         isScrolled ? 'navbar-glass' : 'bg-transparent'
       }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-4">
-            <div className="text-2xl font-bold font-display">
+          <div className="flex justify-between items-center py-4 min-h-[64px]">
+            <div className="text-xl sm:text-2xl font-bold font-display flex-shrink-0">
               <span className="text-portfolio-yellow">Shavez</span>
-              <span className="text-portfolio-white ml-2">Edit</span>
+              <span className="text-portfolio-white ml-1 sm:ml-2">Edit</span>
             </div>
             
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-8">
+            <div className="hidden md:flex items-center space-x-4 lg:space-x-6 xl:space-x-8">
               {navItems.map((item) => (
                 <a 
                   key={item.href}
                   href={item.href} 
-                  className="relative group hover:text-portfolio-yellow transition-all duration-300 font-medium text-portfolio-white hover:scale-105"
+                  className="relative group hover:text-portfolio-yellow transition-all duration-300 font-medium text-portfolio-white hover:scale-105 px-2 py-1 whitespace-nowrap text-sm lg:text-base"
                 >
                   {item.label}
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-portfolio-yellow transition-all duration-300 group-hover:w-full"></span>
                 </a>
               ))}
-              <ThemeToggle />
             </div>
 
             {/* Mobile Navigation Toggle */}
-            <div className="md:hidden flex items-center gap-2">
-              <ThemeToggle />
+            <div className="md:hidden flex items-center">
               <Button
                 variant="ghost"
                 size="icon"
@@ -293,12 +290,12 @@ const Index = () => {
 
           {/* Mobile Menu */}
           {isMenuOpen && (
-            <div className="md:hidden bg-portfolio-black/95 backdrop-blur-md py-4 space-y-4 border-t border-portfolio-yellow/20 animate-fade-in-down">
+            <div className="md:hidden bg-portfolio-black/95 backdrop-blur-md py-4 space-y-2 border-t border-portfolio-yellow/20 animate-fade-in-down">
               {navItems.map((item) => (
                 <a
                   key={item.href}
                   href={item.href}
-                  className="block px-4 py-2 hover:text-portfolio-yellow transition-colors duration-300 text-portfolio-white font-medium hover:bg-portfolio-yellow/10 rounded-lg"
+                  className="block px-4 py-3 hover:text-portfolio-yellow transition-colors duration-300 text-portfolio-white font-medium hover:bg-portfolio-yellow/10 rounded-lg mx-2"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.label}
@@ -310,7 +307,7 @@ const Index = () => {
       </nav>
 
       {/* Hero Section */}
-      <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 sm:pt-18">
         <div className="absolute inset-0 bg-gradient-to-br from-portfolio-black/90 via-portfolio-black/70 to-portfolio-red/20 z-10"></div>
         <div className="absolute inset-0">
           <img 
@@ -350,18 +347,18 @@ const Index = () => {
             <p className="text-lg sm:text-xl md:text-2xl mb-12 text-portfolio-white/90 animate-fade-in-up animation-delay-1200 font-medium max-w-4xl leading-relaxed">
               Expert video editing for discerning brands and filmmakers seeking narrative power and global impact
             </p>
-            <div className="flex flex-col sm:flex-row gap-6 animate-scale-in animation-delay-1500">
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 animate-scale-in animation-delay-1500 mb-8 sm:mb-12">
               <Button 
-                className="bg-portfolio-yellow text-portfolio-black hover:bg-portfolio-yellow/90 hover:scale-105 transition-all duration-300 font-bold px-8 sm:px-10 py-3 sm:py-4 rounded-lg shadow-2xl text-base sm:text-lg hover:shadow-portfolio-yellow/30 group"
+                className="bg-portfolio-yellow text-portfolio-black hover:bg-portfolio-yellow/90 hover:scale-105 transition-all duration-300 font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-lg shadow-2xl text-sm sm:text-base hover:shadow-portfolio-yellow/30 group w-full sm:w-auto"
                 onClick={() => document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' })}
               >
-                <Play className="mr-3 h-6 w-6 group-hover:scale-110 transition-transform" />
+                <Play className="mr-2 sm:mr-3 h-5 w-5 sm:h-6 sm:w-6 group-hover:scale-110 transition-transform" />
                 Explore My Work 
-                <ArrowRight className="ml-3 h-6 w-6 group-hover:translate-x-2 transition-transform duration-300" />
+                <ArrowRight className="ml-2 sm:ml-3 h-5 w-5 sm:h-6 sm:w-6 group-hover:translate-x-2 transition-transform duration-300" />
               </Button>
               <Button 
                 variant="outline" 
-                className="border-2 border-portfolio-yellow text-portfolio-yellow hover:bg-portfolio-yellow hover:text-portfolio-black hover:scale-105 transition-all duration-300 font-bold px-8 sm:px-10 py-3 sm:py-4 rounded-lg text-base sm:text-lg hover:shadow-2xl hover:shadow-portfolio-yellow/30"
+                className="border-2 border-portfolio-yellow text-portfolio-yellow hover:bg-portfolio-yellow hover:text-portfolio-black hover:scale-105 transition-all duration-300 font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-sm sm:text-base hover:shadow-2xl hover:shadow-portfolio-yellow/30 w-full sm:w-auto"
                 onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
               >
                 Start Your Project
@@ -390,18 +387,14 @@ const Index = () => {
               <p className="text-base sm:text-lg mb-8 text-gray-700 leading-relaxed">
                 Master editor delivering creative, impactful results that elevate brand presence and storytelling across platforms with precision and flair. From YouTube content creation to international client projects, I deliver content that captivates audiences and drives engagement.
               </p>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 mb-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-8">
                 <div className="text-center group hover:scale-110 transition-transform duration-300">
-                  <div className="text-3xl sm:text-4xl font-bold text-portfolio-yellow mb-2">500+</div>
+                  <div className="text-3xl sm:text-4xl font-bold text-portfolio-yellow mb-2">70+</div>
                   <div className="text-sm text-gray-600 font-medium">Projects Completed</div>
                 </div>
                 <div className="text-center group hover:scale-110 transition-transform duration-300">
-                  <div className="text-3xl sm:text-4xl font-bold text-portfolio-red mb-2">200M+</div>
+                  <div className="text-3xl sm:text-4xl font-bold text-portfolio-red mb-2">50M+</div>
                   <div className="text-sm text-gray-600 font-medium">Total Views Generated</div>
-                </div>
-                <div className="text-center group hover:scale-110 transition-transform duration-300">
-                  <div className="text-3xl sm:text-4xl font-bold text-portfolio-yellow mb-2">25+</div>
-                  <div className="text-sm text-gray-600 font-medium">Awards & Recognition</div>
                 </div>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
@@ -448,7 +441,7 @@ const Index = () => {
           </div>
 
           {/* Interactive Category Explorer */}
-          <div className="mb-12 sm:mb-20">
+          <div className="mb-12 sm:mb-20 overflow-visible">
             <div className="text-center mb-12">
               <div className="inline-flex items-center gap-3 bg-portfolio-yellow/10 backdrop-blur-sm border border-portfolio-yellow/20 rounded-full px-4 sm:px-6 py-3 mb-6">
                 <Eye className="h-5 w-5 text-portfolio-yellow" />
@@ -459,7 +452,7 @@ const Index = () => {
               </h3>
             </div>
 
-            <div className="flex overflow-x-auto pb-4 -mx-4 px-4 sm:grid sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7 sm:gap-4 scrollbar-hide">
+            <div className="flex overflow-x-auto pb-8 pt-4 -mx-2 px-6 sm:grid sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7 sm:gap-6 sm:pb-8 sm:pt-4 sm:px-4 scrollbar-hide">
               {[
                 { 
                   key: 'all', 
@@ -467,7 +460,7 @@ const Index = () => {
                   icon: Layers, 
                   color: 'from-purple-500 to-pink-500',
                   bgColor: 'bg-gradient-to-br from-purple-50 to-pink-50',
-                  count: portfolioItems.length,
+                  count: 6,
                   description: 'Complete Collection'
                 },
                 { 
@@ -533,14 +526,14 @@ const Index = () => {
                     key={category.key}
                     onClick={() => setActiveFilter(category.key)}
                     className={`group relative cursor-pointer transition-all duration-500 hover:-translate-y-2 sm:hover:-translate-y-3 flex-shrink-0 w-4/5 sm:w-auto ${
-                      isActive ? 'scale-105 z-10' : 'hover:scale-105'
-                    } ${index > 0 ? 'ml-4 sm:ml-0' : ''}`}
+                      isActive ? 'scale-105 z-20' : 'hover:scale-105 hover:z-10'
+                    } ${index > 0 ? 'ml-6 sm:ml-0' : ''} my-3 sm:my-2`}
                   >
                     <div className={`
                       relative overflow-hidden rounded-2xl border-2 transition-all duration-500 backdrop-blur-sm h-full
                       ${isActive 
                         ? 'border-portfolio-yellow shadow-2xl shadow-portfolio-yellow/30 bg-portfolio-yellow/20' 
-                        : `border-gray-200 hover:border-portfolio-yellow group-hover:shadow-xl ${category.bgColor}`
+                        : `border-gray-200 hover:border-portfolio-yellow group-hover:shadow-xl group-hover:shadow-portfolio-yellow/20 ${category.bgColor}`
                       }
                     `}>
                       <div className="absolute inset-0 opacity-10">
@@ -592,7 +585,7 @@ const Index = () => {
                     </div>
 
                     {isActive && (
-                      <div className="absolute inset-0 rounded-2xl bg-portfolio-yellow/20 animate-ping"></div>
+                      <div className="absolute inset-0 rounded-2xl bg-portfolio-yellow/20 animate-ping -z-10"></div>
                     )}
                   </div>
                 );
@@ -729,19 +722,7 @@ const Index = () => {
                       ))}
                     </div>
 
-                    <div className="flex items-center justify-between pt-4 border-t border-portfolio-white/10">
-                      <div className="flex items-center gap-2">
-                        <Target className="h-4 w-4 text-portfolio-yellow" />
-                        <span className="text-xs text-portfolio-white/60 capitalize">{service.tier} Tier</span>
-                      </div>
-                      <Button 
-                        variant="ghost" 
-                        size="sm"
-                        className="text-portfolio-yellow hover:text-portfolio-black hover:bg-portfolio-yellow transition-all duration-300 p-2"
-                      >
-                        <ArrowRight className="h-4 w-4" />
-                      </Button>
-                    </div>
+
                 </CardContent>
               </Card>
               );
