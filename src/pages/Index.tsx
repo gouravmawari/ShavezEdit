@@ -909,7 +909,7 @@ const Index = () => {
               <div className="space-y-6">
                 <div className="flex items-center gap-4 text-base sm:text-lg">
                   <Mail className="h-6 w-6 text-portfolio-yellow" />
-                  <span className="text-portfolio-white break-all">Shavedit7860@gmail.com</span>
+                  <span className="text-portfolio-white break-all">100be4891b3868db13234ebd8ad5a368</span>
                 </div>
                 <div className="flex items-center gap-4 text-base sm:text-lg">
                   <Phone className="h-6 w-6 text-portfolio-yellow" />
@@ -936,19 +936,6 @@ const Index = () => {
                 action="https://formsubmit.co/100be4891b3868db13234ebd8ad5a368" 
                 method="POST" 
                 className="space-y-6"
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  const form = e.target as HTMLFormElement;
-                  const formData = new FormData(form);
-                  
-                  fetch(form.action, {
-                    method: 'POST',
-                    body: formData,
-                  });
-                  
-                  toast.success("Your message has been sent successfully! We'll get back to you soon.");
-                  form.reset();
-                }}
               >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
