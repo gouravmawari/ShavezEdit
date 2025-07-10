@@ -909,7 +909,7 @@ const Index = () => {
               <div className="space-y-6">
                 <div className="flex items-center gap-4 text-base sm:text-lg">
                   <Mail className="h-6 w-6 text-portfolio-yellow" />
-                  <span className="text-portfolio-white break-all">100be4891b3868db13234ebd8ad5a368</span>
+                  <span className="text-portfolio-white break-all">Shavedit7860@gmail.com</span>
                 </div>
                 <div className="flex items-center gap-4 text-base sm:text-lg">
                   <Phone className="h-6 w-6 text-portfolio-yellow" />
@@ -933,9 +933,25 @@ const Index = () => {
             </div>
             <div className="animate-fade-in">
               <form 
-                action="https://formsubmit.co/100be4891b3868db13234ebd8ad5a368" 
+                action="https://formsubmit.co/Shavedit7860@gmail.com" 
                 method="POST" 
                 className="space-y-6"
+                onSubmit={(e) => {
+                  // Show success popup immediately
+                  toast.success("✅ Message sent successfully! We'll get back to you soon.", {
+                    duration: 4000,
+                    position: "top-center",
+                    style: {
+                      background: '#22c55e',
+                      color: 'white',
+                      fontSize: '16px',
+                      fontWeight: 'bold',
+                      border: '2px solid #16a34a',
+                      borderRadius: '12px',
+                      padding: '16px',
+                    },
+                  });
+                }}
               >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
@@ -970,6 +986,8 @@ const Index = () => {
                 {/* FormSubmit Configuration */}
                 <input type="hidden" name="_subject" value="New message from Shavez Edit website" />
                 <input type="hidden" name="_captcha" value="false" />
+                <input type="hidden" name="_next" value="https://shavez-edit.vercel.app/  " />
+                <input type="hidden" name="_template" value="table" />
                 
                 <Button 
                   type="submit"
