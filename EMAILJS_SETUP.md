@@ -1,6 +1,6 @@
 # EmailJS Setup Guide for Contact Form
 
-## 📧 **Complete Setup to Receive Emails at mohammadshavez2249@gmail.com**
+## 📧 **Complete Setup to Receive Emails at smawari1000@gmail.com**
 
 ### **Step 1: Create EmailJS Account**
 1. Go to [https://www.emailjs.com/](https://www.emailjs.com/)
@@ -12,7 +12,7 @@
 2. Click **"Add New Service"**
 3. Choose **"Gmail"** 
 4. Click **"Connect Account"**
-5. Sign in with **mohammadshavez2249@gmail.com**
+5. Sign in with **smawari1000@gmail.com**
 6. Allow EmailJS permissions
 7. **Copy the Service ID** (example: `service_xxxxxxx`)
 
@@ -58,13 +58,13 @@ Replace the `xxxxxxx` with your actual values from EmailJS.
 1. Start your development server: `npm run dev`
 2. Go to your website's contact section
 3. Fill out the form and submit
-4. Check **mohammadshavez2249@gmail.com** for the email
+4. Check **smawari1000@gmail.com** for the email
 
 ### **📋 EmailJS Template Variables (Already Configured)**
 - `{{from_name}}` - Sender's name
 - `{{from_email}}` - Sender's email  
 - `{{to_name}}` - Your name (Mohd. Shavez)
-- `{{to_email}}` - Your email (mohammadshavez2249@gmail.com)
+- `{{to_email}}` - Your email (smawari1000@gmail.com)
 - `{{message}}` - The message content
 - `{{reply_to}}` - Sender's email for easy reply
 
@@ -77,7 +77,7 @@ Replace the `xxxxxxx` with your actual values from EmailJS.
 ✅ Anti-spam protection  
 
 ### **🚀 Ready to Use!**
-Once you complete the EmailJS setup, your contact form will automatically send all submissions to **mohammadshavez2249@gmail.com**!
+Once you complete the EmailJS setup, your contact form will automatically send all submissions to **smawari1000@gmail.com**!
 
 ---
 

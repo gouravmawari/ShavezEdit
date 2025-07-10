@@ -5,28 +5,15 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { ArrowRight, Play, Award, Users, Clock, Mail, Phone, ExternalLink, Menu, X, Star, Zap, Download, CheckCircle, Instagram, Linkedin, Twitter, Volume2, Globe, Target, Palette, Camera, Music, Smartphone, Monitor, Play as PlayIcon, Edit, Check, Headphones, Video, Building2, ShoppingBag, Film, Mic, Hash, Briefcase, Sparkles, Eye, Layers, TrendingUp } from 'lucide-react';
 import VideoRenderingElement from '@/components/VideoRenderingElement';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
-import emailjs from '@emailjs/browser';                   
 import { toast } from 'sonner';
 
-const contactFormSchema = z.object({
-  name: z.string().min(2, { message: "Name must be at least 2 characters." }),
-  email: z.string().email({ message: "Please enter a valid email." }),
-  message: z.string().min(10, { message: "Message must be at least 10 characters." }),
-});
 
-type ContactFormInputs = z.infer<typeof contactFormSchema>;
 
 const Index = () => {
   const [activeFilter, setActiveFilter] = useState('all');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [hoveredVideoId, setHoveredVideoId] = useState<number | null>(null);
-  const { register, handleSubmit, formState: { errors, isSubmitting }, reset } = useForm<ContactFormInputs>({
-    resolver: zodResolver(contactFormSchema),
-  });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -218,35 +205,7 @@ const Index = () => {
     document.body.removeChild(link);
   };
 
-  const onSubmit = (data: ContactFormInputs) => {
-    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
-    if (!serviceId || !templateId || !publicKey) {
-      toast.error("Contact form is not configured. Please contact the site administrator.");
-      return;
-    }
-
-    const templateParams = {
-      from_name: data.name,
-      from_email: data.email,
-      to_name: "Mohd. Shavez",
-      to_email: "mohammadshavez2249@gmail.com",
-      message: data.message,
-      reply_to: data.email,
-    };
-
-    emailjs.send(serviceId, templateId, templateParams, publicKey)
-      .then(() => {
-        toast.success("Your message has been sent successfully!");
-        reset();
-      })
-      .catch((error) => {
-        console.error("EmailJS Error:", error);
-        toast.error("Failed to send message. Please try again later.");
-      });
-  };
 
   return (
     <div className="min-h-screen bg-portfolio-black text-portfolio-white overflow-x-hidden">
@@ -758,6 +717,152 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Podcast Production Section */}
+      <section className="section-padding bg-gradient-to-br from-portfolio-white to-gray-100 text-portfolio-black relative overflow-hidden">
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-portfolio-yellow rounded-full filter blur-3xl"></div>
+          <div className="absolute bottom-0 left-0 w-72 h-72 bg-portfolio-red rounded-full filter blur-3xl"></div>
+        </div>
+        
+        <div className="max-w-7xl mx-auto relative z-10 px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-3 bg-portfolio-yellow/10 backdrop-blur-sm border border-portfolio-yellow/20 rounded-full px-4 sm:px-6 py-3 mb-8">
+              <Mic className="h-5 w-5 text-portfolio-yellow" />
+              <span className="text-portfolio-yellow font-semibold text-sm sm:text-base">Audio Excellence</span>
+            </div>
+            <h2 className="text-4xl sm:text-5xl md:text-7xl font-bold font-display mb-8 leading-tight">
+              <span className="text-portfolio-black">Professional</span><br />
+              <span className="text-portfolio-yellow">Podcast Editing</span><br />
+              <span className="text-portfolio-red">& Production</span>
+            </h2>
+            <p className="text-base sm:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+              Transform your raw podcast recordings into polished, professional content with our comprehensive audio and video production services
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-16">
+            {/* Left Side - Features */}
+            <div className="space-y-8">
+              <div className="flex items-start gap-4 group">
+                <div className="p-3 bg-portfolio-yellow/20 rounded-xl group-hover:bg-portfolio-yellow transition-colors duration-300">
+                  <Headphones className="h-6 w-6 text-portfolio-yellow group-hover:text-white transition-colors duration-300" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold mb-2 group-hover:text-portfolio-yellow transition-colors duration-300">Professional Audio Editing</h3>
+                  <p className="text-gray-600 leading-relaxed">Expert editing to remove filler words, improve pacing, and create engaging listening experiences.</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4 group">
+                <div className="p-3 bg-portfolio-red/20 rounded-xl group-hover:bg-portfolio-red transition-colors duration-300">
+                  <Volume2 className="h-6 w-6 text-portfolio-red group-hover:text-white transition-colors duration-300" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold mb-2 group-hover:text-portfolio-red transition-colors duration-300">Sound Quality Enhancement</h3>
+                  <p className="text-gray-600 leading-relaxed">Advanced audio processing to eliminate background noise, balance levels, and optimize sound clarity.</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4 group">
+                <div className="p-3 bg-blue-500/20 rounded-xl group-hover:bg-blue-500 transition-colors duration-300">
+                  <Video className="h-6 w-6 text-blue-500 group-hover:text-white transition-colors duration-300" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold mb-2 group-hover:text-blue-500 transition-colors duration-300">Full Video Production</h3>
+                  <p className="text-gray-600 leading-relaxed">Complete video podcast creation with dynamic visuals, graphics, and professional formatting.</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4 group">
+                <div className="p-3 bg-green-500/20 rounded-xl group-hover:bg-green-500 transition-colors duration-300">
+                  <CheckCircle className="h-6 w-6 text-green-500 group-hover:text-white transition-colors duration-300" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold mb-2 group-hover:text-green-500 transition-colors duration-300">High-Quality Delivery</h3>
+                  <p className="text-gray-600 leading-relaxed">Final delivery in multiple formats optimized for all major podcast platforms and social media.</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Side - Visual */}
+            <div className="relative">
+              <div className="bg-gradient-to-br from-portfolio-black to-gray-800 rounded-3xl p-8 text-white relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-portfolio-yellow/10 to-portfolio-red/10"></div>
+                <div className="relative z-10">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="w-16 h-16 bg-portfolio-yellow rounded-full flex items-center justify-center">
+                      <Mic className="h-8 w-8 text-portfolio-black" />
+                    </div>
+                    <div>
+                      <h4 className="text-xl font-bold">Your Podcast Studio</h4>
+                      <p className="text-gray-300">Professional Production Ready</p>
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-4 mb-6">
+                    <div className="flex items-center gap-3">
+                      <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                      <span className="text-sm">Recording: High Quality</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="w-3 h-3 bg-portfolio-yellow rounded-full animate-pulse"></div>
+                      <span className="text-sm">Processing: Audio Enhancement</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="w-3 h-3 bg-portfolio-red rounded-full animate-pulse"></div>
+                      <span className="text-sm">Output: Multi-Format Delivery</span>
+                    </div>
+                  </div>
+
+                  <div className="bg-white/10 rounded-2xl p-4 backdrop-blur-sm">
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="text-sm text-gray-300">Processing Progress</span>
+                      <span className="text-sm text-portfolio-yellow font-semibold">100%</span>
+                    </div>
+                    <div className="w-full bg-gray-700 rounded-full h-2">
+                      <div className="bg-gradient-to-r from-portfolio-yellow to-portfolio-red h-2 rounded-full" style={{ width: '100%' }}></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Floating elements */}
+              <div className="absolute -top-4 -right-4 w-8 h-8 bg-portfolio-yellow/30 rounded-full animate-bounce"></div>
+              <div className="absolute -bottom-6 -left-6 w-12 h-12 bg-portfolio-red/20 rounded-full animate-float"></div>
+            </div>
+          </div>
+
+          {/* Call to Action */}
+          <div className="text-center">
+            <div className="bg-gradient-to-r from-portfolio-yellow/10 via-portfolio-red/10 to-portfolio-yellow/10 rounded-3xl p-8 sm:p-12 border border-portfolio-yellow/20 backdrop-blur-sm">
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 text-portfolio-black">
+                Ready to Elevate Your Podcast?
+              </h3>
+              <p className="text-gray-600 mb-8 max-w-2xl mx-auto text-base sm:text-lg">
+                Join successful podcasters who trust us to deliver professional, engaging content that captivates their audience
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button 
+                  className="bg-portfolio-yellow text-portfolio-black hover:bg-portfolio-yellow/90 font-bold px-8 py-4 rounded-lg text-lg hover:scale-105 transition-all duration-300 group"
+                  onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                >
+                  <Mic className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
+                  Get Your Podcast Edited
+                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-2 transition-transform duration-300" />
+                </Button>
+                <Button 
+                  variant="outline" 
+                  className="border-2 border-portfolio-black text-portfolio-black hover:bg-portfolio-black hover:text-white font-bold px-8 py-4 rounded-lg text-lg hover:scale-105 transition-all duration-300"
+                  onClick={() => document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' })}
+                >
+                  View Our Work
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Experience Section */}
       <section id="experience" className="section-padding bg-portfolio-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -804,7 +909,7 @@ const Index = () => {
               <div className="space-y-6">
                 <div className="flex items-center gap-4 text-base sm:text-lg">
                   <Mail className="h-6 w-6 text-portfolio-yellow" />
-                  <span className="text-portfolio-white break-all">mohammadshavez2249@gmail.com</span>
+                  <span className="text-portfolio-white break-all">Shavedit7860@gmail.com</span>
                 </div>
                 <div className="flex items-center gap-4 text-base sm:text-lg">
                   <Phone className="h-6 w-6 text-portfolio-yellow" />
@@ -827,41 +932,53 @@ const Index = () => {
               </div>
             </div>
             <div className="animate-fade-in">
-              <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+              <form 
+                action="https://formsubmit.co/100be4891b3868db13234ebd8ad5a368" 
+                method="POST" 
+                className="space-y-6"
+                onSubmit={() => {
+                  toast.success("Your message has been sent successfully! We'll get back to you soon.");
+                }}
+              >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <Input 
+                      type="text"
+                      name="name"
                       placeholder="Your Name" 
                       className="bg-portfolio-white/10 border-portfolio-white/30 text-portfolio-white placeholder:text-portfolio-white/60 py-3 focus:border-portfolio-yellow h-12 text-base"
-                      {...register("name")}
+                      required
                     />
-                    {errors.name && <p className="text-portfolio-red text-sm mt-2">{errors.name.message}</p>}
                   </div>
                   <div>
                     <Input 
                       type="email" 
+                      name="email"
                       placeholder="Your Email"
                       className="bg-portfolio-white/10 border-portfolio-white/30 text-portfolio-white placeholder:text-portfolio-white/60 py-3 focus:border-portfolio-yellow h-12 text-base"
-                      {...register("email")}
+                      required
                     />
-                    {errors.email && <p className="text-portfolio-red text-sm mt-2">{errors.email.message}</p>}
                   </div>
                 </div>
                 <div>
                   <Textarea 
+                    name="message"
                     placeholder="Your Message" 
                     className="bg-portfolio-white/10 border-portfolio-white/30 text-portfolio-white placeholder:text-portfolio-white/60 py-3 focus:border-portfolio-yellow text-base"
                     rows={5}
-                    {...register("message")}
+                    required
                   />
-                  {errors.message && <p className="text-portfolio-red text-sm mt-2">{errors.message.message}</p>}
                 </div>
+                
+                {/* FormSubmit Configuration */}
+                <input type="hidden" name="_subject" value="New message from Shavez Edit website" />
+                <input type="hidden" name="_captcha" value="false" />
+                
                 <Button 
                   type="submit"
-                  disabled={isSubmitting}
-                  className="w-full bg-portfolio-yellow text-portfolio-black hover:bg-portfolio-yellow/90 font-bold py-3 sm:py-4 rounded-lg text-base sm:text-lg transition-all duration-300 disabled:bg-gray-500 disabled:cursor-not-allowed"
+                  className="w-full bg-portfolio-yellow text-portfolio-black hover:bg-portfolio-yellow/90 font-bold py-3 sm:py-4 rounded-lg text-base sm:text-lg transition-all duration-300 hover:scale-105"
                 >
-                  {isSubmitting ? 'Sending...' : 'Send Message'}
+                  Send Message
                 </Button>
               </form>
             </div>
