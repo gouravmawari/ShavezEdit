@@ -932,70 +932,30 @@ const Index = () => {
               </div>
             </div>
             <div className="animate-fade-in">
-              <form 
-                action="https://formsubmit.co/Shavedit7860@gmail.com" 
-                method="POST" 
-                className="space-y-6"
-                onSubmit={(e) => {
-                  // Show success popup immediately
-                  toast.success("✅ Message sent successfully! We'll get back to you soon.", {
-                    duration: 4000,
-                    position: "top-center",
-                    style: {
-                      background: '#22c55e',
-                      color: 'white',
-                      fontSize: '16px',
-                      fontWeight: 'bold',
-                      border: '2px solid #16a34a',
-                      borderRadius: '12px',
-                      padding: '16px',
-                    },
-                  });
-                }}
-              >
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <Input 
-                      type="text"
-                      name="name"
-                      placeholder="Your Name" 
-                      className="bg-portfolio-white/10 border-portfolio-white/30 text-portfolio-white placeholder:text-portfolio-white/60 py-3 focus:border-portfolio-yellow h-12 text-base"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <Input 
-                      type="email" 
-                      name="email"
-                      placeholder="Your Email"
-                      className="bg-portfolio-white/10 border-portfolio-white/30 text-portfolio-white placeholder:text-portfolio-white/60 py-3 focus:border-portfolio-yellow h-12 text-base"
-                      required
-                    />
-                  </div>
+              <div className="bg-gradient-to-br from-portfolio-yellow/10 to-portfolio-red/10 rounded-2xl p-8 border border-portfolio-yellow/20 backdrop-blur-sm">
+                <h3 className="text-2xl sm:text-3xl font-bold mb-6 text-portfolio-yellow text-center">
+                  Ready to Discuss Your Project?
+                </h3>
+                <p className="text-base sm:text-lg text-portfolio-white/80 mb-8 text-center leading-relaxed">
+                  If you need to contact or discuss about your project, please fill out our detailed Google Form. 
+                  This helps us understand your requirements better and provide you with the best possible service.
+                </p>
+                <div className="text-center">
+                  <Button 
+                    className="bg-portfolio-yellow text-portfolio-black hover:bg-portfolio-yellow/90 font-bold px-8 py-4 rounded-lg text-lg hover:scale-105 transition-all duration-300 group inline-flex items-center gap-3"
+                    onClick={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLScpe9v_0IyFeaZZm3UW6gEeU-JYN7lfw1jm5ozGYzqy9RIXAw/viewform?usp=header', '_blank')}
+                  >
+                    <ExternalLink className="h-5 w-5 group-hover:scale-110 transition-transform" />
+                    Fill Project Form
+                    <ArrowRight className="h-5 w-5 group-hover:translate-x-2 transition-transform duration-300" />
+                  </Button>
                 </div>
-                <div>
-                  <Textarea 
-                    name="message"
-                    placeholder="Your Message" 
-                    className="bg-portfolio-white/10 border-portfolio-white/30 text-portfolio-white placeholder:text-portfolio-white/60 py-3 focus:border-portfolio-yellow text-base"
-                    rows={5}
-                    required
-                  />
+                <div className="mt-6 text-center">
+                  <p className="text-sm text-portfolio-white/60">
+                    Takes less than 3 minutes • Get personalized quote • Professional consultation
+                  </p>
                 </div>
-                
-                {/* FormSubmit Configuration */}
-                <input type="hidden" name="_subject" value="New message from Shavez Edit website" />
-                <input type="hidden" name="_captcha" value="false" />
-                <input type="hidden" name="_next" value="https://shavez-edit.vercel.app/  " />
-                <input type="hidden" name="_template" value="table" />
-                
-                <Button 
-                  type="submit"
-                  className="w-full bg-portfolio-yellow text-portfolio-black hover:bg-portfolio-yellow/90 font-bold py-3 sm:py-4 rounded-lg text-base sm:text-lg transition-all duration-300 hover:scale-105"
-                >
-                  Send Message
-                </Button>
-              </form>
+              </div>
             </div>
           </div>
         </div>
