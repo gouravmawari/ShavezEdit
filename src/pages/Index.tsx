@@ -6,7 +6,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { ArrowRight, Play, Award, Users, Clock, Mail, Phone, ExternalLink, Menu, X, Star, Zap, Download, CheckCircle, Instagram, Linkedin, Twitter, Volume2, Globe, Target, Palette, Camera, Music, Smartphone, Monitor, Play as PlayIcon, Edit, Check, Headphones, Video, Building2, ShoppingBag, Film, Mic, Hash, Briefcase, Sparkles, Eye, Layers, TrendingUp } from 'lucide-react';
 import VideoRenderingElement from '@/components/VideoRenderingElement';
 import { toast } from 'sonner';
-
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 
 
 const Index = () => {
@@ -918,9 +918,18 @@ const Index = () => {
                 <div className="pt-4">
                   <h4 className="text-base sm:text-lg font-semibold mb-4 text-portfolio-yellow">Connect on Social</h4>
                   <div className="flex gap-4">
-                    <a href="https://www.instagram.com/shav_edit?igsh=MXR2aTh0c2hzODZoNA==" target="_blank" rel="noopener noreferrer" className="p-3 bg-portfolio-yellow/20 rounded-lg hover:bg-portfolio-yellow hover:text-portfolio-black transition-colors">
-                      <Instagram className="h-5 w-5" />
-                    </a>
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <a href="https://www.instagram.com/shav_edit_video_editor/" target="_blank" rel="noopener noreferrer" className="p-3 bg-portfolio-yellow/20 rounded-lg hover:bg-portfolio-yellow hover:text-portfolio-black transition-colors">
+                            <Instagram className="h-5 w-5" />
+                          </a>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>Instagram</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
                     <a href="https://www.linkedin.com/in/mohd-shavez-883a4a347?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noopener noreferrer" className="p-3 bg-portfolio-yellow/20 rounded-lg hover:bg-portfolio-yellow hover:text-portfolio-black transition-colors">
                       <Linkedin className="h-5 w-5" />
                     </a>
